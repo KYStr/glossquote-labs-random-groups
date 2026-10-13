@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "17-random-groups",
+  "slug": "random-groups",
+  "title": "名單隨機分組",
+  "version": "0.1.0",
+  "implementationStatus": "source-candidate-ready-for-integration",
+  "subdomain": "groups",
+  "sourceRepository": "https://github.com/KYStr/glossquote-labs-random-groups",
+  "hostingStatus": "not-deployed",
+  "externalReviewStatus": "not-run"
+}

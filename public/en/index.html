@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Paste a roster and choose a group count to split it locally in your browser. Blank lines are ignored, duplicate names stay distinct, and group sizes differ by at most one.">
+  <meta name="referrer" content="no-referrer">
+  <title>Random Group Generator | GlossQuote</title>
+  <link rel="stylesheet" href="../styles/app.css">
+  <script type="module" src="../js/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to the list workspace</a>
+  <header class="topbar">
+    <a class="brand" href="https://glossquote.com/en/index.html" aria-label="GlossQuote home">GlossQuote</a>
+    <nav aria-label="Language"><a href="../index.html" lang="zh-Hant" hreflang="zh-Hant">繁中</a><span aria-current="page">English</span></nav>
+  </header>
+  <main id="main-content">
+    <div class="intro">
+      <h1>Random group generator</h1>
+      <p>Paste one person per line, choose a number of groups, and assign each participant exactly once.</p>
+      <p class="local-note">The list is processed in this page; it is not saved or sent.</p>
+    </div>
+    <noscript><p class="notice">Enable JavaScript to generate random groups. The list will not be sent. The language and home links above remain available.</p></noscript>
+    <div id="workspace" hidden>
+      <section class="input-workspace" aria-label="List and group count">
+        <div class="input-grid">
+          <div class="roster-field">
+            <label for="roster">Participant list (one person per line)</label>
+            <p class="field-help" id="roster-help">2–500 people. Blank lines are ignored.</p>
+            <textarea id="roster" rows="8" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="roster-help duplicate-help roster-error" aria-invalid="false"></textarea>
+            <p id="roster-stats" class="roster-stats" role="status">0 people · 0 blank lines ignored</p>
+            <p id="roster-error" class="error" hidden></p>
+          </div>
+          <div class="group-field">
+            <label for="group-count">Number of groups</label>
+            <input id="group-count" type="text" inputmode="numeric" value="2" autocomplete="off" spellcheck="false" aria-describedby="group-help group-error" aria-invalid="false">
+            <p class="field-help" id="group-help">Enter 2–50 groups; use whole numbers only.</p>
+            <p id="group-error" class="error" hidden></p>
+            <p id="duplicate-help" class="duplicate-help">Duplicate names stay separate and include an ID. Check that each line represents one participant.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="generate" class="primary" type="button" disabled aria-describedby="random-error">Generate groups</button>
+          <button id="sample" class="secondary" type="button">Load sample names</button>
+          <button id="clear" class="quiet" type="button">Clear</button>
+        </div>
+        <p id="sample-notice" class="field-help" hidden></p>
+        <p id="random-error" class="error" role="alert" hidden></p>
+        <p id="regroup-notice" class="field-help" hidden>Regrouping replaces the current result; two results may be the same.</p>
+      </section>
+      <section class="results" aria-labelledby="results-heading">
+        <div class="result-toolbar"><h2 id="results-heading">Group results</h2><button id="copy" class="secondary" type="button" disabled>Copy groups</button></div>
+        <p id="operation-status" class="result-status" role="status"></p>
+        <p id="empty-result" class="empty-result">No groups yet. Paste at least two participants and choose a group count.</p>
+        <div id="result-list" class="result-list"></div>
+        <p id="copy-status" class="copy-status" role="status"></p>
+        <div id="copy-fallback" hidden><label for="copy-text">Group text for manual copying</label><textarea id="copy-text" rows="8" readonly spellcheck="false" autocomplete="off" aria-describedby="copy-status"></textarea></div>
+      </section>
+    </div>
+    <section class="help-section" aria-labelledby="help-heading">
+      <h2 id="help-heading">How to use</h2>
+      <p>Split an event or class roster into the group count you choose. Review every member and group size; editing the inputs clears the previous result.</p>
+      <p>Paste the list, choose a group count and select “Generate groups”. Group sizes differ by at most one. Select the result text directly or choose “Copy groups”.</p>
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>How many people can I enter?</dt><dd>2 to 500 people, one per line. The raw list can contain up to 60,000 UTF-16 character units. Each name, after trimming its edges, can contain up to 100 units; a typical emoji counts as 2 units.</dd>
+        <dt>Are duplicate names merged?</dt><dd>No. Each nonblank input line has its own ID, such as “Alex (#2)” and “Alex (#5)”. Check that these lines represent separate participants.</dd>
+        <dt>Will every group have the same size?</dt><dd>As close as possible. If the total does not divide evenly, the first few groups each receive one extra person, so sizes differ by at most one.</dd>
+        <dt>Is this a witnessed or auditable drawing?</dt><dd>No. The tool uses the browser’s cryptographic random API and unbiased sampling, but provides no seed, outside witness or reproducible audit proof. Consecutive results may be the same.</dd>
+        <dt>Is the list uploaded or saved?</dt><dd>The tool code does not send or save the list. Closing or leaving the page clears the current work. Loading the site still requests page files from the host, which receives ordinary request information. Clearing the page does not clear text you have already copied to the system clipboard.</dd>
+        <dt>What if the copy button does not work?</dt><dd>You can still select the results on the page. If the browser denies clipboard writing, the tool provides read-only text for manual copying.</dd>
+      </dl>
+    </section>
+  </main>
+  <footer><a href="https://glossquote.com/en/index.html">Back to GlossQuote home</a><span>Gloss Tools by GlossQuote</span></footer>
+</body>
+</html>
